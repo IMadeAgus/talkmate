@@ -1,10 +1,14 @@
-export const subjects = [
-  "maths",
-  "language",
-  "science",
-  "history",
-  "coding",
-  "economics",
+export const countrys = [
+  "american",
+  "australian",
+  "japan",
+  "india",
+  "russian",
+  "poland",
+  "canada",
+  "france",
+  "china",
+  "korean",
 ];
 
 export const subjectsColors = {

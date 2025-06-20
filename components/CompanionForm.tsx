@@ -20,14 +20,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { subjects } from "@/constants";
+import { countrys } from "@/constants";
 import { Textarea } from "@/components/ui/textarea";
 import { createCompanion } from "@/lib/actions/companion.actions";
 import { redirect } from "next/navigation";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Companion is required." }),
-  subject: z.string().min(1, { message: "Subject is required." }),
+  country: z.string().min(1, { message: "Country is required." }),
   topic: z.string().min(1, { message: "Topic is required." }),
   voice: z.string().min(1, { message: "Voice is required." }),
   style: z.string().min(1, { message: "Style is required." }),
@@ -39,7 +39,7 @@ const CompanionForm = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      subject: "",
+      country: "",
       topic: "",
       voice: "",
       style: "",
@@ -51,7 +51,7 @@ const CompanionForm = () => {
     const companion = await createCompanion(values);
 
     if (companion) {
-      redirect(`/companions/${companion.id}`);
+      redirect(`/conversations/${companion.id}`);
     } else {
       console.log("Failed to create a companion");
       redirect("/");
@@ -66,10 +66,10 @@ const CompanionForm = () => {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Companion name</FormLabel>
+              <FormLabel>Trip conversation name</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Enter the companion name"
+                  placeholder="Enter the trip conversation name"
                   {...field}
                   className="input"
                 />
@@ -80,10 +80,10 @@ const CompanionForm = () => {
         />
         <FormField
           control={form.control}
-          name="subject"
+          name="country"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Subject</FormLabel>
+              <FormLabel>Country</FormLabel>
               <FormControl>
                 <Select
                   onValueChange={field.onChange}
@@ -91,16 +91,16 @@ const CompanionForm = () => {
                   defaultValue={field.value}
                 >
                   <SelectTrigger className="input capitalize">
-                    <SelectValue placeholder="Select the subject" />
+                    <SelectValue placeholder="Select the country" />
                   </SelectTrigger>
                   <SelectContent>
-                    {subjects.map((subject) => (
+                    {countrys.map((country) => (
                       <SelectItem
-                        value={subject}
-                        key={subject}
+                        value={country}
+                        key={country}
                         className="capitalize"
                       >
-                        {subject}
+                        {country}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -115,10 +115,10 @@ const CompanionForm = () => {
           name="topic"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>What should the companion help with?</FormLabel>
+              <FormLabel>What should the trip about?</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Ex. Derivates & Integrals"
+                  placeholder="Ex. tell us a story about..."
                   {...field}
                   className="input"
                 />

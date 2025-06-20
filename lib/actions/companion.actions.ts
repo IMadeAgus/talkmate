@@ -22,19 +22,19 @@ export const createCompanion = async (formData: CreateCompanion) => {
 export const getAllCompanions = async ({
   limit = 10,
   page = 1,
-  subject,
+  country,
   topic,
 }: GetAllCompanions) => {
   const supabase = createSupabaseClient();
 
   let query = supabase.from("companions").select();
 
-  if (subject && topic) {
+  if (country && topic) {
     query = query
-      .ilike("subject", `%${subject}%`)
+      .ilike("country", `%${country}%`)
       .or(`topic.ilike.%${topic}%,name.ilike.%${topic}%`);
-  } else if (subject) {
-    query = query.ilike("subject", `%${subject}%`);
+  } else if (country) {
+    query = query.ilike("country", `%${country}%`);
   } else if (topic) {
     query = query.or(`topic.ilike.%${topic}%,name.ilike.%${topic}%`);
   }

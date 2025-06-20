@@ -9,7 +9,7 @@ interface CompanionCardProps {
   id: string;
   name: string;
   topic: string;
-  subject: string;
+  country: string;
   duration: number;
   color: string;
   bookmarked: boolean;
@@ -19,9 +19,9 @@ const CompanionCard = ({
   id,
   name,
   topic,
-  subject,
+  country,
   duration,
-  color,
+  // color,
   bookmarked,
 }: CompanionCardProps) => {
   const pathname = usePathname();
@@ -33,9 +33,9 @@ const CompanionCard = ({
     }
   };
   return (
-    <article className="companion-card" style={{ backgroundColor: color }}>
+    <article className="companion-card">
       <div className="flex justify-between items-center">
-        <div className="subject-badge">{subject}</div>
+        <div className="subject-badge">{country}</div>
         <button className="companion-bookmark" onClick={handleBookmark}>
           <Image
             src={
@@ -60,7 +60,7 @@ const CompanionCard = ({
         <p className="text-sm">{duration} minutes</p>
       </div>
 
-      <Link href={`/companions/${id}`} className="w-full">
+      <Link href={`/conversations/${id}`} className="w-full">
         <button className="btn-primary w-full justify-center">
           Launch Lesson
         </button>

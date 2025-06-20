@@ -7,7 +7,7 @@ import {
   getBookmarkedCompanions,
   getRecentSessions,
 } from "@/lib/actions/companion.actions";
-import { getSubjectColor } from "@/lib/utils";
+// import { getSubjectColor } from "@/lib/utils";
 import { auth } from "@clerk/nextjs/server";
 
 const Page = async () => {
@@ -34,14 +34,14 @@ const Page = async () => {
 
   return (
     <main>
-      <h1>Popular Companions</h1>
+      <h1>Popular Trip Conversations</h1>
 
       <section className="home-section">
         {companionsWithBookmarks.map((companion) => (
           <CompanionCard
             key={companion.id}
             {...companion}
-            color={getSubjectColor(companion.subject)}
+            // color={getSubjectColor(companion.subject)}
           />
         ))}
       </section>

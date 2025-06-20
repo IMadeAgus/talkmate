@@ -1,56 +1,56 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "./ui/select";
-import { subjects } from "@/constants";
+import { countrys } from "@/constants";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { formUrlQuery, removeKeysFromUrlQuery } from "@jsmastery/utils";
 
-const SubjectFilter = () => {
-    const router = useRouter();
-    const searchParams = useSearchParams();
-    const query = searchParams.get("subject") || "";
+const CountryFilter = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const query = searchParams.get("country") || "";
 
-    const [subject, setSubject] = useState(query);
+  const [country, setcountry] = useState(query);
 
-    useEffect(() => {
-        let newUrl = "";
-        if (subject === "all") {
-            newUrl = removeKeysFromUrlQuery({
-                params: searchParams.toString(),
-                keysToRemove: ["subject"],
-            });
-        } else {
-            newUrl = formUrlQuery({
-                params: searchParams.toString(),
-                key: "subject",
-                value: subject,
-            });
-        }
-        router.push(newUrl, { scroll: false });
-    }, [subject]);
+  useEffect(() => {
+    let newUrl = "";
+    if (country === "all") {
+      newUrl = removeKeysFromUrlQuery({
+        params: searchParams.toString(),
+        keysToRemove: ["country"],
+      });
+    } else {
+      newUrl = formUrlQuery({
+        params: searchParams.toString(),
+        key: "country",
+        value: country,
+      });
+    }
+    router.push(newUrl, { scroll: false });
+  }, [country]);
 
-    return (
-        <Select onValueChange={setSubject} value={subject}>
-            <SelectTrigger className="input capitalize">
-                <SelectValue placeholder="Subject" />
-            </SelectTrigger>
-            <SelectContent>
-                <SelectItem value="all">All subjects</SelectItem>
-                {subjects.map((subject) => (
-                    <SelectItem key={subject} value={subject} className="capitalize">
-                        {subject}
-                    </SelectItem>
-                ))}
-            </SelectContent>
-        </Select>
-    );
+  return (
+    <Select onValueChange={setcountry} value={country}>
+      <SelectTrigger className="input capitalize">
+        <SelectValue placeholder="country" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="all">All countrys</SelectItem>
+        {countrys.map((country) => (
+          <SelectItem key={country} value={country} className="capitalize">
+            {country}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  );
 };
 
-export default SubjectFilter;
+export default CountryFilter;

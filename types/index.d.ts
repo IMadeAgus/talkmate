@@ -5,22 +5,23 @@
 //   accountId: string;
 // };
 
-enum Subject {
-  maths = "maths",
-  language = "language",
-  science = "science",
-  history = "history",
-  coding = "coding",
-  geography = "geography",
-  economics = "economics",
-  finance = "finance",
-  business = "business",
+enum Country {
+  american = "american",
+  australian = "australian",
+  japan = "japan",
+  india = "india",
+  russian = "russian",
+  poland = "poland",
+  canada = "canada",
+  france = "france",
+  china = "china",
+  korean = "korean",
 }
 
 type Companion = Models.DocumentList<Models.Document> & {
   $id: string;
   name: string;
-  subject: Subject;
+  country: Country;
   topic: string;
   duration: number;
   bookmarked: boolean;
@@ -28,7 +29,7 @@ type Companion = Models.DocumentList<Models.Document> & {
 
 interface CreateCompanion {
   name: string;
-  subject: string;
+  country: string;
   topic: string;
   voice: string;
   style: string;
@@ -38,7 +39,7 @@ interface CreateCompanion {
 interface GetAllCompanions {
   limit?: number;
   page?: number;
-  subject?: string | string[];
+  country?: string | string[];
   topic?: string | string[];
 }
 
@@ -72,7 +73,7 @@ interface SavedMessage {
 
 interface CompanionComponentProps {
   companionId: string;
-  subject: string;
+  country: string;
   topic: string;
   name: string;
   userName: string;

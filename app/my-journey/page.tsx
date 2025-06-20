@@ -11,8 +11,8 @@ import {
   getUserSessions,
   getBookmarkedCompanions,
 } from "@/lib/actions/companion.actions";
-import Image from "next/image";
 import CompanionsList from "@/components/CompanionsList";
+import Image from "next/image";
 
 const Profile = async () => {
   const user = await currentUser();
@@ -53,21 +53,21 @@ const Profile = async () => {
               />
               <p className="text-2xl font-bold">{sessionHistory.length}</p>
             </div>
-            <div>Lessons completed</div>
+            <div>Conversations completed</div>
           </div>
           <div className="border border-black rouded-lg p-3 gap-2 flex flex-col h-fit">
             <div className="flex gap-2 items-center">
               <Image src="/icons/cap.svg" alt="cap" width={22} height={22} />
               <p className="text-2xl font-bold">{companions.length}</p>
             </div>
-            <div>Companions created</div>
+            <div>Conversations created</div>
           </div>
         </div>
       </section>
       <Accordion type="multiple">
         <AccordionItem value="bookmarks">
           <AccordionTrigger className="text-2xl font-bold">
-            Bookmarked Companions {`(${bookmarkedCompanions.length})`}
+            Bookmarked Conversations {`(${bookmarkedCompanions.length})`}
           </AccordionTrigger>
           <AccordionContent>
             <CompanionsList
@@ -89,7 +89,7 @@ const Profile = async () => {
         </AccordionItem>
         <AccordionItem value="companions">
           <AccordionTrigger className="text-2xl font-bold">
-            My Companions {`(${companions.length})`}
+            My Trip Conversations {`(${companions.length})`}
           </AccordionTrigger>
           <AccordionContent>
             <CompanionsList title="My Companions" companions={companions} />

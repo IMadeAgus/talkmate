@@ -17,7 +17,7 @@ enum CallStatus {
 
 const CompanionComponent = ({
   companionId,
-  subject,
+  country,
   topic,
   name,
   userName,
@@ -89,7 +89,7 @@ const CompanionComponent = ({
     setCallStatus(CallStatus.CONNECTING);
 
     const assistantOverrides = {
-      variableValues: { subject, topic, style },
+      variableValues: { country, topic, style },
       clientMessages: ["transcript"],
       serverMessages: [],
     };
@@ -109,7 +109,7 @@ const CompanionComponent = ({
         <div className="companion-section">
           <div
             className="companion-avatar"
-            style={{ backgroundColor: getSubjectColor(subject) }}
+            style={{ backgroundColor: getSubjectColor(country) }}
           >
             <div
               className={cn(
@@ -123,10 +123,10 @@ const CompanionComponent = ({
               )}
             >
               <Image
-                src={`/icons/${subject}.svg`}
-                alt={subject}
-                width={150}
-                height={150}
+                src={`/icons/talking.svg`}
+                alt={country}
+                width={350}
+                height={350}
                 className="max-sm:w-fit"
               />
             </div>
